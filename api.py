@@ -10,9 +10,9 @@ class Account:
         self.password = password
 
     def connect(self, international=False):
-        international_parameter = "domestic"
+        international_parameter = 2
         if international:
-            international_parameter = "international"
+            international_parameter = 1
         payload = {'uid': self.username,
                    'password': self.password,
                    'range': international_parameter,

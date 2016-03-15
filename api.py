@@ -42,9 +42,9 @@ class Account:
         r = requests.get("https://its.pku.edu.cn:5428/ipgatewayofpku", params=payload)
         return_text = r.text
         if return_text.find('SUCCESS=NO'):
-            if return_text.find('不在申请访问服务的范围内'):
+            if return_text.find('不在申请访问服务的范围内')!=-1:
                 raise IPGWError('calling API outside campus LAN')
-            if return_text.find('账户名错'):
+            if return_text.find('账户名错')!=-1:
                 raise IPGWError('authentication failed')
 
     def disconnect(self, disconnect_all=False):
@@ -53,13 +53,13 @@ class Account:
             operation = "disconnectall"
         payload = {'uid': self.username,
                    'password': self.password,
-                   'range': 'domestic',
+                   'range': 1,
                    'operation': operation,
                    'timeout': 1}
         r = requests.get("https://its.pku.edu.cn:5428/ipgatewayofpku", params=payload)
         return_text = r.text
         if return_text.find('SUCCESS=NO'):
-            if return_text.find('不在申请访问服务的范围内'):
+            if return_text.find('不在申请访问服务的范围内')!=-1:
                 raise IPGWError('calling API outside campus LAN')
-            if return_text.find('账户名错'):
+            if return_text.find('账户名错')!=-1:
                 raise IPGWError('authentication failed')
